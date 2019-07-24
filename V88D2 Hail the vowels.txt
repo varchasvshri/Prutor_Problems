@@ -1,0 +1,55 @@
+Given a word, count the number of substrings that start and end with a vowel.
+
+INPUT
+You will be given an integer N which tells how many words will be given as input followed by N words in different lines.
+
+OUTPUT-
+Print the number of substrings for each string that start and end with a vowel, in a new line.
+
+CONSTRAINTS-
+N<=100
+number of letters in the word<=100
+
+SAMPLE INPUT
+1
+bdexyaku
+SAMPLE OUTPUT
+3
+
+SOLUTION-
+#include <stdio.h> 
+
+int countSubStr(char str[])  
+{  
+int res = 0;
+for (int i=0; str[i] !='\0'; i++)  
+{  
+        if (str[i]=='a' || str[i]=='e' || str[i]=='i' || str[i]=='o' || str[i]=='u')  
+        {  
+            res++; 
+            for (int j=i+1; str[j] !='\0'; j++){  
+            if (str[j]=='a' || str[j]=='e' || str[j]=='i' || str[j]=='o' || str[j]=='u')  
+                res++;  }
+        } 
+}  
+return res;  
+}  
+
+int main()  
+{
+    int N,i;
+    scanf("%d",&N);
+    char str[N][100];  
+    
+    for(i=0;i!=N;i++) {scanf("%s",str[i]);}
+    for(i=0;i!=N;i++) {printf("%d\n",countSubStr(str[i]));}
+    return 0;  
+}
+
+SOLUTION TEMPLATE - 
+#include <stdio.h> 
+
+int main()  
+{
+    return 0;  
+}

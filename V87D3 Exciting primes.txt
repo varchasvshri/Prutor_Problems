@@ -1,0 +1,76 @@
+PROBLEM-
+A long ladder was given as a gift to Euclid by Eratosthenes. The ladder is a series of rungs connected to each other in a straight line. Each rung contains a number carved on it.
+Now Euclid picks a single rung and examines it. The exciting coefficient is determined by how many rungs are there in that part on which a prime number is carved.
+Since there are lots of ways for Euclid to choose his rung, find the sum of the exciting coefficient of all the possible rungs that can be obtained after examining the ladder.
+Input
+First line contains an integer T, denoting the number of test cases.
+Each of the next T lines contains a number N which denotes the number of rungs in the ladder as mentioned in the problem.
+
+Output
+For each test case, print the value of sum of the exciting coefficient as mentioned in the problem.
+Answer for each test case should be printed in a new line.
+
+Input Constraints
+1=T=10
+1=|N|=105
+
+SAMPLE INPUT
+1
+24967
+SAMPLE OUTPUT
+10
+
+SOLUTION - 
+#include <stdio.h>
+
+int is_prime(n)//function to check primality of a number
+{
+    int i;
+    for(i = 2; i <= n/2; ++i)
+    {
+        if(n%i == 0)
+        {
+            return 0;
+        }
+    }
+    return 1;
+}
+int len(n)//function to count number of digits in a number
+{
+    int count = 0;
+    while(n != 0)
+    {
+        n /= 10;
+        ++count;
+    }
+    return count;
+}
+
+int main()
+{
+	int input,tests, i,j,k, length;
+	long long int result, count;
+	scanf("%d", &tests); 
+	
+	for(i=0; i < tests; i++){
+	    scanf("%d",&input);
+	    length=len(input);
+	    j=length;
+	    count=result=0;
+	    int arr[100001];
+	    for(k=length-1;k>=0;k--)//store digits of the number in an array
+	    {
+	        arr[k] = input%10;
+	        input/=10;
+	    }
+	    
+	    while(j-- > 0){
+	        if(is_prime(arr[j])){
+	               count+=length-j;
+	           }
+	           result+=count;
+	    }
+	    printf("%lld\n", result);
+	}
+	return 0;
+}

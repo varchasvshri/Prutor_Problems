@@ -1,0 +1,60 @@
+Fredo has messed up his JEE Advanced paper and is out giving another paper. The rules of the examination are:
+
+Fredo has to score at least A marks to clear the exam. There will be N questions to attempt. Fredo can either answer the question correctly or incorrectly or else leave it. The marking scheme of the paper is for a correct answer he will gain 3 marks and lose 1 mark if he gets the answer wrong. If he leaves the question he doesn't gain or lose a mark.
+
+
+
+Fredo has an array Arr containing N elements corresponding to the N questions. For ith question, if Fredo gets answer correct then Arr[i]=C, else if he gets his answer wrong then Arr[i]=W else Arr[i] = L.
+
+Fredo asks you to tell him if he will be able to clear the examination. If yes, then also tell him how much is he scoring.
+
+If he is not able to clear the examination, then also tell him how much is he scoring.
+
+
+
+Input Format:
+
+Each test cases consists of two lines:
+
+The first line consists of two integers A and N, denoting the cut-off and number of questions respectively.
+
+The second line consists of array Arr as described in the question.
+
+
+
+Output Format:
+
+For each test case:
+
+If he is able to clear the examination, print PASS followed by the marks he is scoring.
+
+Else print FAIL followed by the marks he is scoring.
+
+
+
+Input Constraints:
+
+1=A=105
+
+1=N=105
+
+
+
+SAMPLE INPUT
+
+
+
+9 5
+WWCWC
+
+6 7
+CCWLCWW
+
+
+SAMPLE OUTPUT
+
+
+
+FAIL 4
+
+PASS 6

@@ -1,0 +1,160 @@
+Roy frequently needs to use his old Nokia cell phone for texting whose keypad looks exactly as shown below.
+
+
+
+enter image description here
+
+
+
+You may be already familiar with the working of the keypad, however, if you're not we shall see a few examples.
+
+
+
+To type "b", we need to press "2" twice. To type "?" we need to press "1" thrice. To type "5" we need to press "5" four times. To type "0" we need to press "0" twice.
+
+
+
+I hope that it's clear how the keypad is being used.
+
+
+
+Now Roy has a lot of text messages and they are pretty lengthy. So he devised a mechanical-hand-robot (with only 1 finger) which does the typing job.
+
+
+
+This robot receives text from others in the form of number codes. The number code contains two lines. The first line contains a number corresponding to each alphabet or special character on the Nokia keypad. And the second line contains the number of times the key in keypad has to be pressed so that correct character could be print.
+
+
+
+Now Roy has to write a code to convert that number code into text which humans can read.
+
+
+
+Input:
+
+The first line contains a stream of digits with each digit corresponding to the number on keypad for each character.
+
+
+
+The second line contains the number of times the keypad must be pressed for each digit for the required character to be print.
+
+
+
+Output:
+
+Print the message after decoding it from the numeric form.
+
+
+
+Constraints:
+
+1 = N = 1000 , where N denotes the number of digits in the given input.
+
+Note: We are using "_" underscore instead of " " empty space to avoid confusion
+
+
+
+SAMPLE INPUT
+
+
+
+5747203467880989583801
+
+1414312322121342412123
+
+
+
+SAMPLE OUTPUT
+
+
+
+11
+10
+15
+
+
+#include <stdio.h>
+#include <string.h>
+ 
+int hashFunc(int x, int y){
+if(x==1)
+{
+    if(y==1) printf(".");
+    else if(y==2) printf(",");
+    else if(y==3) printf("?");
+    else if(y==4) printf("!");
+    else if(y==5) printf("1");
+}
+if(x==2)
+{
+    if(y==1) printf("a");
+    else if(y==2) printf("b");
+    else if(y==3) printf("c");
+    else if(y==4) printf("2");
+}
+if(x==3)
+{
+    if(y==1) printf("d");
+    else if(y==2) printf("e");
+    else if(y==3) printf("f");
+    else if(y==4) printf("3");
+}
+if(x==4)
+{
+    if(y==1) printf("g");
+    else if(y==2) printf("h");
+    else if(y==3) printf("i");
+    else if(y==4) printf("4");
+}
+if(x==5)
+{
+    if(y==1) printf("j");
+    else if(y==2) printf("k");
+    else if(y==3) printf("l");
+    else if(y==4) printf("5");
+}
+if(x==6)
+{
+    if(y==1) printf("m");
+    else if(y==2) printf("n");
+    else if(y==3) printf("o");
+    else if(y==4) printf("6");
+}
+if(x==7)
+{
+    if(y==1) printf("p");
+    else if(y==2) printf("q");
+    else if(y==3) printf("r");
+    else if(y==4) printf("s");
+    else if(y==5) printf("7");
+}
+if(x==8)
+{
+    if(y==1) printf("t");
+    else if(y==2) printf("u");
+    else if(y==3) printf("v");
+    else if(y==4) printf("8");
+}
+if(x==9)
+{
+    if(y==1) printf("w");
+    else if(y==2) printf("x");
+    else if(y==3) printf("y");
+    else if(y==4) printf("z");
+    else if(y==5) printf("9");
+}
+if(x==0)
+{
+    if(y==1) printf(" ");
+    else if(y==2) printf("0");
+}return 1;
+}
+int main() 
+{
+    char str1[1000],str2[1000];
+    int i;
+    scanf("%s",str1);
+    scanf("%s",str2);
+    for(i=0;i<strlen(str1);i++) hashFunc(str1[i]-'0',str2[i]-'0');
+    return 0; 
+}

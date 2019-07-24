@@ -1,0 +1,119 @@
+Jack has finally reached his dream city Las Vegas. He loves to gamble so for sure he first visited a casino. In this casino, the rules for winning the lottery on a slot machine is somewhat different. After putting a quarter dollar coin the slot machine comes up with an N digit number. If the difference between the number and the number formed by arranging its digits in ascending order comes out to be a unique number such that every digit of this unique number is equal then Jack wins the lottery.
+
+
+
+Input:
+
+- The first line contains an integer N determining the number of digits of the upcoming number.
+
+- The next line contains an N-digit number.
+
+
+
+Output:
+
+
+
+Output 'WIN' if Jack wins the lottery and 'LOSE' otherwise. ON the next line also print the difference obtained.
+
+
+
+Constraints:
+
+1 = N = 10000
+
+
+
+SAMPLE INPUT:
+
+
+
+3
+123
+
+
+SAMPLE OUTPUT:
+
+
+
+WIN
+000
+
+
+#include <stdio.h> 
+
+void merge(int arr[], int l, int m, int r) 
+{ 
+    int i, j, k; 
+    int n1 = m - l + 1; 
+    int n2 =  r - m; 
+    int L[n1], R[n2]; 
+    for (i = 0; i < n1; i++) 
+        L[i] = arr[l + i]; 
+    for (j = 0; j < n2; j++) 
+        R[j] = arr[m + 1+ j]; 
+  
+    i = 0;
+    j = 0;
+    k = l;
+    while (i < n1 && j < n2) 
+    { 
+        if (L[i] <= R[j]) 
+        { 
+            arr[k] = L[i]; 
+            i++; 
+        } 
+        else
+        { 
+            arr[k] = R[j]; 
+            j++; 
+        } 
+        k++; 
+    } 
+  
+    while (i < n1) 
+    { 
+        arr[k] = L[i]; 
+        i++; 
+        k++; 
+    }
+    while (j < n2) 
+    { 
+        arr[k] = R[j]; 
+        j++; 
+        k++; 
+    } 
+}
+
+void mergeSort(int arr[], int l, int r) 
+{ 
+    if (l < r) 
+    { 
+        int m = l+(r-l)/2; 
+        mergeSort(arr, l, m); 
+        mergeSort(arr, m+1, r); 
+  
+        merge(arr, l, m, r); 
+    } 
+}
+
+int main() 
+{
+    int n,num,i;
+    scanf("%d%d",&n,&num);
+    int arr1[n],arr2[n],diff[n];
+    for(i=0;i<n;i++) {arr1[i]=num%10;arr2[i]=arr1[i];num/=10;}
+    mergeSort(arr1,0,n-1);
+    for(i=0;i<n;i++)
+    {
+        if(arr2[i]-arr1[n-i-1]>=0) diff[i] = arr2[i]-arr1[n-i-1];
+        else {diff[i] = arr2[i]-arr1[n-i-1]+10;arr2[i+1]-=1;}
+    }
+    int eq = diff[0],flag=1;
+    for(i=0;i<n;i++)
+    {
+        if(diff[i]!=eq) {printf("LOSE\n");flag=0;break;}
+    }if(flag) printf("WIN\n");
+    for(i=n-1;i>=0;i--) printf("%d",diff[i]);
+    return 0; 
+}

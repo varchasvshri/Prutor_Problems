@@ -1,0 +1,76 @@
+Fredo is playing his favourite game PUBG along with his friends in war mode. The rules of the game are:
+
+
+
+The team consists of 4 players. Each player will participate in a duel which can result in killing the opponent or getting killed. Each player will have 5 duels each which will have either of the two outcomes. If the player kills the opponent the team will gain 3 points or else lose 1 point. The team wins if they cross the winning score of 30 points then the team wins.
+
+
+
+Fredo has an array Arr containing 10 elements corresponding to each of the players. If the ith player wins his jth duel , then Arr[i][j]=1 else Arr[i][j]=0.
+
+Fredo asks you to tell him if his team won or not. Also, tell him the score so that his team could improve in future.
+
+
+
+Input Format:
+
+Four lines of results of outcomes of duels with each line corresponding to the ith player.
+
+
+
+Output Format:
+
+If his team wins then print WON followed by the score on the next line.
+
+
+
+If his team loses then print LOST followed by the score on the next line. 
+
+
+
+Input Constraints:
+
+0=Arr[i]=1
+
+
+
+SAMPLE INPUT
+
+
+
+0 0 1 0 1
+0 0 1 1 1
+1 0 1 1 1
+1 1 0 1 0
+
+
+SAMPLE OUTPUT
+
+
+
+ 
+
+
+
+LOST
+28
+
+Primary Solution Code editor
+#include <stdio.h> 
+
+int main() 
+{
+    int arr[4][5];
+    int i,j,score=0;
+    for(i=0;i<4;i++){
+        for(j=0;j<5;j++)
+        {
+            scanf("%d",&arr[i][j]);
+            if(arr[i][j]) score+=3;
+            else score-=1;
+        }
+    }
+    if(score>=30) printf("WON\n%d",score);
+    else printf("LOST\n%d",score);
+    return 0; 
+}

@@ -1,0 +1,75 @@
+You will be given N integers on a number line. You need to find the sum of distances of each point from the point with the smallest positive integer value.
+
+
+
+Input:
+
+
+
+An integer N signifying how many points from the number line you will be given.
+
+
+
+N integers in one line.
+
+
+
+Output:
+
+
+
+Sum of distances as described above.
+
+
+
+Constraints:
+
+1 = N = 10000
+
+
+
+At least one positive integer value. 
+
+
+
+SAMPLE INPUT
+
+
+
+5
+-2 -6 1 8 -2
+
+
+SAMPLE OUTPUT
+
+
+
+20
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int min(int a, int b)
+{
+    if(a>b) return b;
+    return a;
+}
+
+int distance(int a, int b)
+{
+    return abs(a-b);
+}
+int main() 
+{
+    int n,i;
+    scanf("%d",&n);
+    int arr[n],smallest=100001,sum=0;
+    for(i=0;i<n;i++){
+        scanf("%d",&arr[i]);
+        if(arr[i]>0) smallest = min(smallest,arr[i]);
+    }
+    for(i=0;i<n;i++) sum+=distance(smallest,arr[i]);
+    printf("%d",sum);
+    return 0; 
+}

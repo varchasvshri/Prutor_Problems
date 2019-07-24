@@ -1,0 +1,99 @@
+Each shop in Diagon Alley is given an unique code. The shops are arranged such that a square pattern is generated.
+Due to increased burglaries in diagon alley, the ministry of magic has instructed the shop owners to change their location such that the
+gcd of the elements in diagonal position are prime numbers or else 1. If the gcd of all the diagonals are prime then the pattern is 
+marked as safe and unsafe otherwise by ministry of magic.
+INPUT-
+A number N which determines the number of rows and column in the square pattern of shops. Then N^2 numbers will be given as an input.
+OUTPUT-
+You have to print whether the pattern generated is safe or unsafe.
+SAMPLE INPUT-
+3
+1 2 3
+4 5 6
+7 9 9
+
+CONSTRAINTS-
+N <= 1000
+SAMPLE OUTPUT-
+SAFE
+EXPLANATION-
+Possible diagonals are {7},{4 9},{1 5 9},{2 6},{3}. Their respective gcd's are {7},{1},{1},{2},{3}. Since all the gcd's are prime the given
+pattern is to be marked safe.
+
+SOLUTION-
+#include <stdio.h>
+
+int f_gcd(int a, int b)
+{
+    if (a == 0) 
+        return b; 
+    return f_gcd(b % a, a);
+}
+
+int is_prime(int n)
+{
+    int flag = 1;
+    for(int i = 2; i <= n/2; ++i)
+    {
+        if(n%i == 0)
+        {
+            flag = 0;
+            break;
+        }
+    }
+    return flag;
+}
+
+int main() {
+	int i,j,N,flag=1,gcd,k;
+	scanf("%d",&N);
+	int arr[N][N];
+	for(i=0;i<N;i++)
+	{
+	    for(j=0;j<N;j++)
+	    {
+	        scanf("%d",&arr[i][j]);
+	    }
+	}
+	if(!is_prime(arr[0][N-1])||!is_prime(arr[N-1][0])) printf("UNSAFE");
+	else{
+	for(i=N-2;i>=0;i--)
+	{
+	    gcd = arr[i][0];k=i;
+	    for(j=0;j<N-i;j++)
+	    {
+	        //k=i;
+	        if(k<N) gcd = f_gcd(gcd,arr[k++][j]);
+	    }
+	    if(gcd!=1 && !is_prime(gcd)) {printf("UNSAFE");flag=0;break;}
+	}
+	
+	for(j=N-2;j>=0;j--)
+	{
+	    gcd = arr[0][j];k=j;
+	    for(i=0;i<N-j;i++)
+	    {
+	        if(k<N) gcd = f_gcd(gcd,arr[i][k++]);
+	    }
+	    if(gcd!=1 && !is_prime(gcd)) {printf("UNSAFE");flag=0;break;}
+	}
+	
+	if(flag) printf("SAFE");//printf("%d",is_prime(4));
+	}
+	return 0;
+}
+
+SAMPLE SOLUTION-
+#include <stdio.h>
+
+int gcd()
+{
+} 
+
+int is_prime()
+{
+}
+
+int main() {
+	return 0;
+}

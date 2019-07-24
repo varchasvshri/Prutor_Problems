@@ -1,0 +1,58 @@
+Given a string find out the number of upper case alphabets which are vowels.
+
+
+
+Input
+
+
+
+Each line contains a string S.
+
+
+
+Output
+
+
+
+Print the number of uppercase vowel alphabets.
+
+
+
+Input Constraints
+
+
+
+1=|S|=105
+
+
+
+String consists of lowercase and/or uppercase English alphabets.
+
+
+
+SAMPLE INPUT
+
+
+
+abCde
+
+
+SAMPLE OUTPUT
+
+
+
+0
+
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str[100000];
+    scanf("%s",str);
+    int count=0;
+    for(int i=0;i<strlen(str);i++){
+        if(str[i]=='A'||str[i]=='E'||str[i]=='I'||str[i]=='O'||str[i]=='U')count++;
+    }
+    printf("%d",count);
+}
